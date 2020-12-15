@@ -1,0 +1,42 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.example.grpc.server.grpcserver.hookah;
+
+message ProtoHookah {
+    string producer = 1;
+    string material = 2;
+    string size = 3;
+    int32 price = 4;
+}
+
+message DeleteRequest {
+	string hookah_id = 1;
+    string payment_id = 2;
+}
+
+message DeleteResponse {
+    string report = 1;
+}
+
+message GetRequest {
+}
+
+message GetResponse {
+    repeated ProtoHookah hookahs = 1;
+}
+
+message CreateRequest {
+	ProtoHookah hookah = 1;
+}
+
+message CreateResponse {
+    string id = 1;
+}
+
+service HookahService {
+    rpc get(GetRequest) returns (GetResponse);
+    rpc delete(DeleteRequest) returns (DeleteResponse);
+    rpc create(CreateRequest) returns (CreateResponse);
+}
+
+
